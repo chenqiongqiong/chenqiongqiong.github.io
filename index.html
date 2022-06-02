@@ -7,6 +7,49 @@
   <title>Document</title>
 </head>
 <body>
-  <p>hello world </p>
+  <img src="./static/1111.png" />
+  <div id="div1">2022-03-02</div>
+  <div id="div2">2022-06-01 19:23:12</div>
 </body>
+
+<script>
+  function getFullString(num) {
+    return num >= 10 ? num : '0' + num;
+  }
+  setInterval(() => {
+    const date = new Date();
+    const year = date.getFullYear();
+    const month = getFullString(date.getMonth() + 1);
+    const day = getFullString(date.getDate());
+    const hours = getFullString(date.getHours());
+    const minutes = getFullString(date.getMinutes());
+    const seconds = getFullString(date.getSeconds());
+    document.getElementById('div1').innerText =`${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+  }, 1000);
+</script>
+
+<style>
+  body {
+    width: 100%;
+    margin: 0;
+  }
+  img {
+    width: 100%;
+  }
+  div {
+    position: absolute;
+  }
+  #div1 {
+    top: 262px;
+    color: white;
+    font-size: 22px;
+    left: 35px;
+  }
+  #div2 {
+    top: 569px;
+    color: #262323;
+    font-size: 16px;
+    left: 200px;
+  }
+</style>
 </html>
