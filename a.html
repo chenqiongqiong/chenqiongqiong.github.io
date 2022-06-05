@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>&#x6cb3;&#x5357;&#x7701;&#x75ab;&#x60c5;&#x9632;&#x63a7;&#x573a;&#x6240;&#x7801;</title>
+</head>
+<body>
+  <img src="./static/1.png" />
+  <div id="date-time"></div>
+  <div id="user">
+    <div id="name" onclick="setName()"></div>
+    <div id="card-box">
+      <span id="card"  onclick="setCard()"></span>
+
+  </div>
+  </div>
+  <div id="input-box">
+    <input onchange="setNew(this.value)"></input>
+  </div>
+</body>
+
+<script>
+  let attr = 'addr';
+  let name = '陈琼琼'
+  let card = '410880199111278515'
+  let addr = '基运投资大厦'
+  function getFullString(num) {
+    return num >= 10 ? num : '0' + num;
+  }
+  window.addEventListener('load', () => {
+    document.getElementById('name').innerText = name;
+    document.getElementById('card').innerText = card;
+    // document.getElementById('addr').innerText = addr;
+    // setLatestTime();
+  });
+  function setLatestTime() {
+    const d = new Date(Date.now() - 24*3600*1000);
+    const mon = d.getMonth() + 1;
+    const day = d.getDate();
+    // document.getElementById('latest-time').innerText = `${mon}月${day}日 08:48`
+  }
+  
+  
+  // document.getElementById('date').innerText = `${year}年${month}月${day}日`;
+  // document.getElementById('time').innerText =`${month}月${day}日`;
+  
+  setInterval(() => {
+    const date = new Date();
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1);
+    const day = (date.getDate());
+    const hours = getFullString(date.getHours());
+    const minutes = getFullString(date.getMinutes());
+    const seconds = getFullString(date.getSeconds());
+    document.getElementById('date-time').innerText = `${month}月${day}日 ${hours}:${minutes}:${seconds}`;
+  }, 1000);
+
+  function setAddr() {
+    attr = 'addr';
+  }
+  function setName() {
+    attr = 'name';
+  }
+  function setCard() {
+    attr = 'card';
+  }
+  function setNew(v) {
+    document.getElementById(attr).innerText = v;
+  }
+</script>
+
+<style>
+  body {
+    width: 100%;
+    margin: 0;
+    background: #f6f7fb;
+  }
+  img {
+    width: 100%;
+  }
+  #div1, #date-time, #addr {
+    position: absolute;
+  }
+  #addr {
+    top: 062px;
+    color: white;
+    font-size: 22px;
+    text-align: center;
+    width: 100%;
+  }
+  #date-time {
+    top: 178px;
+    color: black;
+    font-size: 30px;
+    white-space: nowrap;
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+  }
+  #time {
+    font-size: 40px;
+    font-weight: bold;
+    letter-spacing: 6px;
+  }
+  #user {
+    position: absolute;
+    top: 88px;
+    left: 20px;
+  }
+  #name {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  #card {
+    color: #555;
+  }
+  svg {
+    position: relative;
+    top: 3px;
+  }
+  #latest-time {
+    top: 676px;
+    position: absolute;
+    left: 60px;
+  }
+  #seconds {
+    height: 45px;
+    overflow: hidden;
+    position: absolute;
+    left: 244px;
+    top: 30px;
+  }
+  ul {
+    list-style: none;
+    transition: transform .5s;
+    font-size: 40px;
+    line-height: 56px;
+    font-weight: bold;
+  }
+  #check-business-box {
+    margin: 20px 0 40px 0;
+    text-align: center;
+  }
+  #check-business-box span {
+    color: #13bb63;
+    display: inline-block;
+    padding: 7px 70px;
+    border: 1px solid #13bb63;
+    border-radius: 10px;
+  }
+  #input-box {
+    margin-top: 100px;
+  }
+</style>
+</html>
