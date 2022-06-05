@@ -73,7 +73,7 @@
   let count = 0
   setInterval(() => {
     count += 1;
-    let offset = count % 10 * 45 + 33;
+    let offset = count % 10 * 56 + 44;
     document.getElementsByTagName('ul')[0].style.transform = `translateY(-${offset}px)`;
   }, 1500);
 
@@ -116,7 +116,7 @@
     text-align: center;
   }
   #time {
-    font-size: 32px;
+    font-size: 40px;
     font-weight: bold;
     letter-spacing: 6px;
   }
@@ -146,14 +146,14 @@
     height: 45px;
     overflow: hidden;
     position: absolute;
-    left: 232px;
-    top: 25px;
+    left: 239px;
+    top: 30px;
   }
   ul {
     list-style: none;
     transition: transform .5s;
-    font-size: 32px;
-    line-height: 45px;
+    font-size: 40px;
+    line-height: 56px;
     font-weight: bold;
   }
   #check-business-box {
