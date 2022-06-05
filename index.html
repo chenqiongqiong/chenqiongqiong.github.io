@@ -38,9 +38,13 @@
   <div id="check-business-box">
     <span>查看行程卡</span>
   </div>
+  <div id="input-box">
+    <input onchange="setNew(this.value)"></input>
+  </div>
 </body>
 
 <script>
+  let attr = 'addr';
   let name = '陈琼琼'
   let card = '410880199111278515'
   let addr = '基运投资大厦'
@@ -78,13 +82,16 @@
   }, 1500);
 
   function setAddr() {
-    document.getElementById('addr').innerText = window.prompt();
+    attr = 'addr';
   }
   function setName() {
-    document.getElementById('name').innerText = window.prompt();
+    attr = 'name';
   }
   function setCard() {
-    document.getElementById('card').innerText = window.prompt();
+    attr = 'card';
+  }
+  function setNew(v) {
+    document.getElementById(attr).innerText = v;
   }
 </script>
 
@@ -146,7 +153,7 @@
     height: 45px;
     overflow: hidden;
     position: absolute;
-    left: 242px;
+    left: 244px;
     top: 30px;
   }
   ul {
@@ -166,6 +173,9 @@
     padding: 7px 70px;
     border: 1px solid #13bb63;
     border-radius: 10px;
+  }
+  #input-box {
+    margin-top: 100px;
   }
 </style>
 </html>
