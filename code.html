@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="./static/js/jimp.js"></script>
+  <script src="./static/js/jsqr.min.js"></script>
+  <script src="./static/js/base.js"></script>
+</head>
+<body>
+  <button onclick="sweep()">sweep</button>
+  <canvas class="canvas" id="canvas"></canvas>
+  <div id="real">
+    <iframe id="iframe" src=""></iframe>
+    <img id="hour" src="./static/123.jpeg" >
+  </div>
+  <input onchange="setPosition(event)"></input>
+  
+  <script>
+    const result = document.querySelector('#iframe');
+    const QrCode = new QrCodeRecognition({
+        sweepId: '#canvas',
+        error: function (err) {
+            result.value = err;
+        },
+        seuccess: function (res) {
+            result.src = res.data;
+            document.querySelector('#real').style.display = 'block';
+
+        }
+    });
+
+    // 扫一扫
+    function sweep() {
+        result.value = '';
+        QrCode.sweep();
+    }
+
+    // 从相册选择
+    function upload() {
+        result.value = '';
+        QrCode.upload();
+    }
+
+    function setPosition(v) {
+      console.log(v.target.value);
+      document.querySelector('#hour').style.top = v.target.value + 'px'
+    }
+  </script>
+  <script src="./static/js/qrcode.js"></script>
+  <script src="./static/js/jimp.js"></script>
+  <script src="./static/js/jsqr.min.js"></script>
+  <script src="./static/js/base.js"></script>
+  <style>
+    canvas, #real iframe {
+      display   : none;
+      box-sizing: border-box;
+      position  : fixed;
+      top       : 0;
+      right     : 0;
+      bottom    : 0;
+      left      : 0;
+      width     : 100vw;
+      height    : 100vh;
+    }
+    #real {
+      display: none;
+    }
+    #real #hour {
+      position: fixed;
+      left: 0;
+      width: 100%;
+      top: 100px;
+    }
+  </style>
+  
+</body>
+</html>
