@@ -15,8 +15,8 @@
   <div id="real">
     <iframe id="iframe" src=""></iframe>
     <img id="hour" src="./static/123.jpeg" >
+    <input onchange="setPosition(event)"></input>
   </div>
-  <input onchange="setPosition(event)"></input>
   
   <script>
     const result = document.querySelector('#iframe');
@@ -54,7 +54,7 @@
   <script src="./static/js/jsqr.min.js"></script>
   <script src="./static/js/base.js"></script>
   <style>
-    canvas, iframe {
+    canvas, #real {
       display   : none;
       box-sizing: border-box;
       position  : fixed;
@@ -65,17 +65,19 @@
       width     : 100vw;
       height    : 100vh;
     }
-    #real {
-      display: none;
-    }
     iframe {
       display: block;
+      width: 100%;
+      height: 100%;
+    }
+    #real {
+      padding-bottom: 100px;
     }
     #real #hour {
       position: fixed;
       left: 0;
       width: 100%;
-      top: 100px;
+      top: 300px;
     }
   </style>
   
