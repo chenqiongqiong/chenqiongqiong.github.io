@@ -36,25 +36,20 @@
 </body>
 
 <script>
+  const name = new URLSearchParams(window.location.search).get('name');
+  const addr = new URLSearchParams(window.location.search).get('addr');
   let attr = 'addr';
-  let name = '李敏鸽'
-  let addr = '郑州电子信息技术职业学院'
   function getFullString(num) {
     return num >= 10 ? num : '0' + num;
   }
   window.addEventListener('load', () => {
+    if (!name || !addr) return;
     document.getElementById('name').innerText = name;
     document.getElementById('addr').innerText = addr;
     if (localStorage.getItem('logined')) {
       setVisible();
     }
-    setLatestTime();
   });
-  function setLatestTime() {
-    const d = new Date(Date.now() - 24*3600*1000);
-    const mon = d.getMonth() + 1;
-    const day = d.getDate();
-  }
   
   const date = new Date();
   const year = date.getFullYear();
@@ -73,18 +68,6 @@
     document.getElementsByTagName('ul')[0].style.transform = `translateY(-${offset}px)`;
   }, 1500);
 
-  function setAddr() {
-    attr = 'addr';
-  }
-  function setName() {
-    attr = 'name';
-  }
-  function setCard() {
-    attr = 'card';
-  }
-  function setNew(v) {
-    document.getElementById(attr).innerText = v;
-  }
   function valid(v) {
     if (v == 6666) {
       setVisible();
@@ -94,6 +77,13 @@
   function setVisible() {
     document.getElementById('main').style.display = 'block';
     document.getElementById('login').style.display = 'none';
+    const isIphone = new URLSearchParams(window.location.search).get('iphone')
+    if (!isIphone) {
+      console.log(111);
+      document.getElementById('seconds').style.left = '244px';
+      document.getElementById('user').style.top = '300px';
+    }
+
   }
 </script>
 
