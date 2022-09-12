@@ -4,57 +4,74 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title> </title>
+  <title>&#x6cb3;&#x5357;&#x7701;&#x75ab;&#x60c5;&#x9632;&#x63a7;&#x573a;&#x6240;&#x7801;</title>
 </head>
 <body>
-  <img src="./static/1.png" />
-  <div id="date-time"></div>
-  <div id="user">
-    <div id="name" onclick="setName()"></div>
-    <div id="card-box">
-      <span id="card"  onclick="setCard()"></span>
+  <div style="display: none;" id="main">
+    <img src="./static/00.png" />
+    <div id="addr" onclick="setAddr()"></div>
+    <div id="date-time">
+      <div id="date"></div>
+      <div id="time"></div>
+      <div id="seconds">
+        <ul>
+          <li>1</li>
+          <li>2</li>
+          <li>3</li>
+          <li>4</li>
+          <li>5</li>
+          <li>6</li>
+          <li>7</li>
+          <li>8</li>
+          <li>9</li>
+          <li>0</li>
+        </ul>
+      </div>
+    </div>
+    <div id="user">
+      <div id="name" onclick="setName()"></div>
     </div>
   </div>
-  <div id="input-box">
-    <input onchange="setNew(this.value)"></input>
-  </div>
+  <input type="text" id="login" onchange="valid(this.value)">
 </body>
 
 <script>
   let attr = 'addr';
-  let name = '陈琼琼'
-  let card = '410880199111278515'
-  let addr = '基运投资大厦'
+  let name = '李敏鸽'
+  let addr = '郑州电子信息技术职业学院'
   function getFullString(num) {
     return num >= 10 ? num : '0' + num;
   }
   window.addEventListener('load', () => {
     document.getElementById('name').innerText = name;
-    document.getElementById('card').innerText = card;
-    // document.getElementById('addr').innerText = addr;
-    // setLatestTime();
+    document.getElementById('addr').innerText = addr;
+    if (localStorage.getItem('logined')) {
+      setVisible();
+    }
+    setLatestTime();
   });
   function setLatestTime() {
     const d = new Date(Date.now() - 24*3600*1000);
     const mon = d.getMonth() + 1;
     const day = d.getDate();
-    // document.getElementById('latest-time').innerText = `${mon}月${day}日 08:48`
   }
   
+  const date = new Date();
+  const year = date.getFullYear();
+  const month = (date.getMonth() + 1);
+  const day = (date.getDate());
+  const hours = getFullString(date.getHours());
+  const minutes = getFullString(date.getMinutes());
+  const seconds = getFullString(date.getSeconds());
+  document.getElementById('date').innerText = `${year}年${month}月${day}日`;
+  document.getElementById('time').innerText =`${hours}:${minutes}:3`;
   
-  // document.getElementById('date').innerText = `${year}年${month}月${day}日`;
-  // document.getElementById('time').innerText =`${month}月${day}日`;
-  
+  let count = 0
   setInterval(() => {
-    const date = new Date();
-    const year = date.getFullYear();
-    const month = (date.getMonth() + 1);
-    const day = (date.getDate());
-    const hours = getFullString(date.getHours());
-    const minutes = getFullString(date.getMinutes());
-    const seconds = getFullString(date.getSeconds());
-    document.getElementById('date-time').innerText = `${month}月${day}日 ${hours}:${minutes}:${seconds}`;
-  }, 1000);
+    count += 1;
+    let offset = count % 10 * 56 + 47;
+    document.getElementsByTagName('ul')[0].style.transform = `translateY(-${offset}px)`;
+  }, 1500);
 
   function setAddr() {
     attr = 'addr';
@@ -67,6 +84,16 @@
   }
   function setNew(v) {
     document.getElementById(attr).innerText = v;
+  }
+  function valid(v) {
+    if (v == 6666) {
+      setVisible();
+      localStorage.setItem('logined', true);
+    }
+  }
+  function setVisible() {
+    document.getElementById('main').style.display = 'block';
+    document.getElementById('login').style.display = 'none';
   }
 </script>
 
@@ -90,13 +117,12 @@
     width: 100%;
   }
   #date-time {
-    top: 178px;
+    top: 175px;
     color: black;
-    font-size: 30px;
+    font-size: 18px;
     white-space: nowrap;
     width: 100%;
     text-align: center;
-    font-weight: bold;
   }
   #time {
     font-size: 40px;
@@ -105,25 +131,20 @@
   }
   #user {
     position: absolute;
-    top: 93px;
-    left: 20px;
+    top: 310px;
+    left: 36px;
   }
   #name {
     font-size: 20px;
-    margin-bottom: 2px;
+    font-weight: bold;
+    margin-bottom: 8px;
   }
   #card {
     color: #555;
-    font-size: 15px;
   }
   svg {
     position: relative;
     top: 3px;
-  }
-  #latest-time {
-    top: 676px;
-    position: absolute;
-    left: 60px;
   }
   #seconds {
     height: 45px;
